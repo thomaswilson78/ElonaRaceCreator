@@ -141,9 +141,8 @@ namespace ElonaRaceCreator
         {
             List<string> ls = new List<string>();
             for (int i=0;i<s.Length;i+=2)
-            {
                 ls.Add(s[i].ToString());
-            }
+            
             return ls;
         }
 

@@ -37,7 +37,7 @@ namespace ElonaRaceCreator
             {
                 while(rdr.Read())
                 {
-                    Name = rdr[0].ToString();
+                    Name = rdr["name-e"].ToString();
                     rdr.Close();
                     break;
                 }

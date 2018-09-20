@@ -23,10 +23,11 @@ namespace ElonaRaceCreator
             InitializeComponent();
             try
             {
-                if (!File.Exists(@".\o_race.csv")) {
+                if (!File.Exists(@".\o_race.csv"))
+                {
                     throw new Exception("File \"o_race.csv\" not found. Make sure you are running the program in the elona\\data folder");
                 }
-                using (TextFieldParser parser = new TextFieldParser(@"o_race.csv",Encoding.Default))
+                using (TextFieldParser parser = new TextFieldParser(@"o_race.csv", Encoding.GetEncoding("shift_jis")))
                 {
                     parser.TextFieldType = FieldType.Delimited;
                     parser.SetDelimiters(",");
@@ -41,19 +42,14 @@ namespace ElonaRaceCreator
                     parser.Close();
                 }
                 foreach (Races r in RaceList)
-                {
                     RaceLB.Items.Add(r.name);
-                }
-                
             }
             catch (Exception e)
             {
                 System.Windows.Forms.MessageBox.Show("Place program into your \"data\" directory in you Elona folder. \n \n Full Error: " + e.Message,
                     "Error", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
-                this.Close();
+                Close();
             }
-
-
         }
 
         private void RaceLB_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -70,14 +66,32 @@ namespace ElonaRaceCreator
             HPTB.Text = r.hp.ToString();
             MPTB.Text = r.mp.ToString();
             StrTB.Text = r.str.ToString();
-
+            EndTB.Text = r.end.ToString();
+            DexTB.Text = r.dex.ToString();
+            PerTB.Text = r.per.ToString();
+            LerTB.Text = r.ler.ToString();
+            WilTB.Text = r.wil.ToString();
+            MagTB.Text = r.mag.ToString();
+            ChrTB.Text = r.chr.ToString();
+            HeadCB.IsChecked = r.head;
+            NeckCB.IsChecked = r.neck;
+            BackCB.IsChecked = r.back;
+            BodyCB.IsChecked = r.body;
+            HandRCB.IsChecked = r.handr;
+            HandLCB.IsChecked = r.handl;
+            RingRCB.IsChecked = r.ringr;
+            RingLCB.IsChecked = r.ringl;
+            ArmCB.IsChecked = r.arm;
+            WaistCB.IsChecked = r.waist;
+            LegCB.IsChecked = r.leg;
+            //To do: finish printing out stats, eventually print out skills
 
         }
 
         private void AddNewRace_Click(object sender, RoutedEventArgs e)
         {
             String name = Microsoft.VisualBasic.Interaction.InputBox("Enter the name of your race.", "Add Race", "");
-            if(!String.IsNullOrEmpty(name) && !name.Contains(","))
+            if (!String.IsNullOrEmpty(name) && !name.Contains(","))
             {
                 int id = (from kvp in RaceList select kvp.id).Max() + 1;
                 RaceList.Add(new Races(name, id));
@@ -96,7 +110,7 @@ namespace ElonaRaceCreator
                 Races.PrintBody(cbx) };
             TextBox[] TextBoxes = { };
             string[] arr = new string[34];
-            for (int i = 0; i<arr.Length; i++)
+            for (int i = 0; i < arr.Length; i++)
             {
 
             }
