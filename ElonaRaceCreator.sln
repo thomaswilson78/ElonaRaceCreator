@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2005
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElonaRaceCreator", "ElonaRaceCreator\ElonaRaceCreator.csproj", "{3BBD248F-0E24-4602-91B6-204D1F817C6F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSkill", "TestSkill\TestSkill.csproj", "{2C43095F-0973-4B4E-92E6-E7BDA1F0B878}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3BBD248F-0E24-4602-91B6-204D1F817C6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BBD248F-0E24-4602-91B6-204D1F817C6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BBD248F-0E24-4602-91B6-204D1F817C6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BBD248F-0E24-4602-91B6-204D1F817C6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C43095F-0973-4B4E-92E6-E7BDA1F0B878}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C43095F-0973-4B4E-92E6-E7BDA1F0B878}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C43095F-0973-4B4E-92E6-E7BDA1F0B878}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C43095F-0973-4B4E-92E6-E7BDA1F0B878}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7C25DA51-A82B-4DED-A3FE-7BBBF277E4D6}
+	EndGlobalSection
+EndGlobal

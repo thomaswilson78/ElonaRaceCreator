@@ -1,0 +1,15 @@
+C:\Users\Thomas\source\repos\ElonaRaceCreator\ElonaRaceCreator\bin\Release\ElonaRaceCreator.exe.config
+C:\Users\Thomas\source\repos\ElonaRaceCreator\ElonaRaceCreator\bin\Release\ElonaRaceCreator.exe
+C:\Users\Thomas\source\repos\ElonaRaceCreator\ElonaRaceCreator\bin\Release\ElonaRaceCreator.pdb
+C:\Users\Thomas\source\repos\ElonaRaceCreator\ElonaRaceCreator\obj\Release\MainWindow.g.cs
+C:\Users\Thomas\source\repos\ElonaRaceCreator\ElonaRaceCreator\obj\Release\App.g.cs
+C:\Users\Thomas\source\repos\ElonaRaceCreator\ElonaRaceCreator\obj\Release\ElonaRaceCreator_MarkupCompile.cache
+C:\Users\Thomas\source\repos\ElonaRaceCreator\ElonaRaceCreator\obj\Release\ElonaRaceCreator_MarkupCompile.lref
+C:\Users\Thomas\source\repos\ElonaRaceCreator\ElonaRaceCreator\obj\Release\MainWindow.baml
+C:\Users\Thomas\source\repos\ElonaRaceCreator\ElonaRaceCreator\obj\Release\ElonaRaceCreator.g.resources
+C:\Users\Thomas\source\repos\ElonaRaceCreator\ElonaRaceCreator\obj\Release\ElonaRaceCreator.Properties.Resources.resources
+C:\Users\Thomas\source\repos\ElonaRaceCreator\ElonaRaceCreator\obj\Release\ElonaRaceCreator.csproj.GenerateResource.cache
+C:\Users\Thomas\source\repos\ElonaRaceCreator\ElonaRaceCreator\obj\Release\ElonaRaceCreator.csproj.CoreCompileInputs.cache
+C:\Users\Thomas\source\repos\ElonaRaceCreator\ElonaRaceCreator\obj\Release\ElonaRaceCreator.exe
+C:\Users\Thomas\source\repos\ElonaRaceCreator\ElonaRaceCreator\obj\Release\ElonaRaceCreator.pdb
+C:\Users\Thomas\source\repos\ElonaRaceCreator\ElonaRaceCreator\obj\Release\ElonaRaceCreator.csprojResolveAssemblyReference.cache
