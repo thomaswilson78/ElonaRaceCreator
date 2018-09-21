@@ -16,7 +16,7 @@ namespace ElonaRaceCreator
     {
         SQLiteDB DB = new SQLiteDB();
         List<Skill> AllSkills = new List<Skill>();
-        List<Races> RaceList = new List<Races>();
+        List<Race> RaceList = new List<Race>();
 
         public MainWindow()
         {
@@ -36,13 +36,18 @@ namespace ElonaRaceCreator
                     while (!parser.EndOfData)
                     {
                         string[] lines = parser.ReadFields();
-                        Races r = new Races(lines);
+                        Race r = new Race(lines);
                         RaceList.Add(r);
                     }
                     parser.Close();
                 }
-                foreach (Races r in RaceList)
+                foreach (Race r in RaceList)
                     RaceLB.Items.Add(r.name);
+                for (int i = 0; i < 300; i++)
+                {
+                    Pic1CB.Items.Add(i);
+                    Pic2CB.Items.Add(i);
+                }
             }
             catch (Exception e)
             {
@@ -54,36 +59,33 @@ namespace ElonaRaceCreator
 
         private void RaceLB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            bool?[] cbx = { HeadCB.IsChecked, NeckCB.IsChecked, BackCB.IsChecked, BodyCB.IsChecked,
-                HandRCB.IsChecked, HandLCB.IsChecked, RingRCB.IsChecked,
-                RingLCB.IsChecked, ArmCB.IsChecked, WaistCB.IsChecked, LegCB.IsChecked };
-            Object[] RaceInfo = { "", RaceName.Text, RaceID.Text, PlayableCB, SexSldr.Value, "1", "2",
-                HPTB.Text, MPTB.Text, StrTB.Text, EndTB.Text, DexTB.Text, PerTB.Text, LerTB.Text, WilTB.Text, MagTB.Text, ChrTB.Text, SpdTB.Text,
-                Races.PrintBody(cbx) };
-            Races r = RaceList[RaceLB.SelectedIndex];
+            CheckBox[] cbx = { HeadCB , NeckCB , BackCB , BodyCB ,
+                HandRCB , HandLCB , RingRCB ,
+                RingLCB , ArmCB , WaistCB , LegCB  };
+            TextBox[] stats = { HPTB, MPTB, StrTB, EndTB, DexTB,
+                PerTB, LerTB, WilTB, MagTB, ChrTB, SpdTB };
+            Race r = RaceList[RaceLB.SelectedIndex];
+
             RaceName.Text = r.name;
             RaceID.Text = r.id.ToString();
-            HPTB.Text = r.hp.ToString();
-            MPTB.Text = r.mp.ToString();
-            StrTB.Text = r.str.ToString();
-            EndTB.Text = r.end.ToString();
-            DexTB.Text = r.dex.ToString();
-            PerTB.Text = r.per.ToString();
-            LerTB.Text = r.ler.ToString();
-            WilTB.Text = r.wil.ToString();
-            MagTB.Text = r.mag.ToString();
-            ChrTB.Text = r.chr.ToString();
-            HeadCB.IsChecked = r.head;
-            NeckCB.IsChecked = r.neck;
-            BackCB.IsChecked = r.back;
-            BodyCB.IsChecked = r.body;
-            HandRCB.IsChecked = r.handr;
-            HandLCB.IsChecked = r.handl;
-            RingRCB.IsChecked = r.ringr;
-            RingLCB.IsChecked = r.ringl;
-            ArmCB.IsChecked = r.arm;
-            WaistCB.IsChecked = r.waist;
-            LegCB.IsChecked = r.leg;
+
+            List<int> RaceStats = r.GetStats();
+            for (int i = 0; i < RaceStats.Count(); i++)
+                stats[i].Text = RaceStats[i].ToString();
+
+            List<bool> BodyBool = r.GetBody();
+            for (int i = 0; i < BodyBool.Count(); i++)
+                cbx[i].IsChecked = BodyBool[i];
+
+            PlayableCB.IsChecked = r.playable;
+
+            RaceDesc.Text = r.desc_e;
+
+            SexSldr.Value = r.sex;
+            SliderValue.Text = r.sex.ToString();
+
+            Pic1CB.SelectedIndex = r.pic1;
+            Pic2CB.SelectedIndex = r.pic2;
             //To do: finish printing out stats, eventually print out skills
 
         }
@@ -94,7 +96,7 @@ namespace ElonaRaceCreator
             if (!String.IsNullOrEmpty(name) && !name.Contains(","))
             {
                 int id = (from kvp in RaceList select kvp.id).Max() + 1;
-                RaceList.Add(new Races(name, id));
+                RaceList.Add(new Race(name, id));
                 RaceLB.Items.Add(name);
                 //Todo: Enter race into o_race.csv
             }
@@ -107,7 +109,7 @@ namespace ElonaRaceCreator
                 RingLCB.IsChecked, ArmCB.IsChecked, WaistCB.IsChecked, LegCB.IsChecked };
             Object[] RaceInfo = { "", RaceName.Text, RaceID.Text, PlayableCB, SexSldr.Value, "1", "2",
                 HPTB.Text, MPTB.Text, StrTB.Text, EndTB.Text, DexTB.Text, PerTB.Text, LerTB.Text, WilTB.Text, MagTB.Text, ChrTB.Text, SpdTB.Text,
-                Races.PrintBody(cbx) };
+                Race.PrintBody(cbx) };
             TextBox[] TextBoxes = { };
             string[] arr = new string[34];
             for (int i = 0; i < arr.Length; i++)

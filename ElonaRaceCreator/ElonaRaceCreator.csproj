@@ -74,7 +74,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Races.cs" />
+    <Compile Include="Race.cs" />
     <Compile Include="Skill.cs" />
     <Compile Include="SQLiteDB.cs" />
     <Page Include="MainWindow.xaml">

@@ -153,7 +153,7 @@
                 </DockPanel>
                 <DockPanel>
                     <TextBlock Text="Pic2" Margin="3" />
-                    <ComboBox Width="50" Margin="3 0" Name="Pic2CB"/>
+                    <ComboBox HorizontalAlignment="Left" Width="50" Margin="3 0" Name="Pic2CB"/>
                 </DockPanel>
             </StackPanel>
 
@@ -164,7 +164,9 @@
                 </Grid.RowDefinitions>
                 <TextBlock Text="Description (do not use commas)"
                            Grid.Row="0"></TextBlock>
-                <TextBox Name="RaceDesc" Grid.Row="1" Background="#FFE8DEB2" ></TextBox>
+                <TextBox Name="RaceDesc" Grid.Row="1" Background="#FFE8DEB2" 
+                         TextWrapping="Wrap" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                         ScrollViewer.VerticalScrollBarVisibility="Auto"></TextBox>
             </Grid>
 
             <StackPanel Grid.Column="1" Grid.Row="3">

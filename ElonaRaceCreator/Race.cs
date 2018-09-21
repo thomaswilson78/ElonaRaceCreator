@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ElonaRaceCreator
 {
-    class Races
+    class Race
     {
         #region variables
         public string jpname, name, skill, trait, desc_j, desc_e;
@@ -17,17 +15,17 @@ namespace ElonaRaceCreator
         List<Skill> Skills = new List<Skill>();
         #endregion
 
-        public Races(string name, int id)
+        public Race(string name, int id)
         {
             this.name = name;
             this.id = id;
         }
 
-        public Races(string[] arr)
+        public Race(string[] arr)
         {
             AddInfo(arr);
         }
-        
+
         public void AddInfo(string[] arr)
         {
             jpname = arr[0];
@@ -64,7 +62,6 @@ namespace ElonaRaceCreator
             SetBody(ls);
             desc_j = arr[31];
             desc_e = arr[32];
-            
         }
 
         static public int IntParse(string x)
@@ -93,9 +90,9 @@ namespace ElonaRaceCreator
 
         public void SetBody(List<string> ls)
         {
-            foreach(string s in ls)
+            foreach (string s in ls)
             {
-                switch(s)
+                switch (s)
                 {
                     case "頭":
                         head = true;
@@ -137,18 +134,37 @@ namespace ElonaRaceCreator
             }
         }
 
+        public void SetBody(bool?[] list)
+        {
+            List<bool> BoolList = new List<bool>()
+            { head, neck, back, body, handr, handl, ringr, ringl, arm, waist, leg };
+
+            for (int i = 0; i < list.Count(); i++)
+                BoolList[i] = list[i].HasValue ? false : (bool)list[i];
+        }
+
         private List<string> GetBody(string s)
         {
             List<string> ls = new List<string>();
-            for (int i=0;i<s.Length;i+=2)
+            for (int i = 0; i < s.Length; i += 2)
                 ls.Add(s[i].ToString());
-            
+
             return ls;
+        }
+
+        public List<bool> GetBody()
+        {
+            return new List<bool>() { head, neck, back, body, handr, handl, ringr, ringl, arm, waist, leg };
+        }
+
+        public List<int> GetStats()
+        {
+            return new List<int>() { hp, mp, str, end, dex, per, ler, wil, mag, chr, spd };
         }
 
         public string PrintBody()
         {
-            string s ="";
+            string s = "";
             bool[] b = { head, neck, back, body, handr, handl, ringr, ringl, arm, waist, leg };
             string[] parts = { "頭", "首", "体", "背", "手", "手", "指", "指", "腕", "腰", "足" };
             for (int i = 0; i < b.Length; i++)
@@ -156,12 +172,13 @@ namespace ElonaRaceCreator
                     s += parts[i] + "|";
             return s;
         }
+
         static public string PrintBody(bool?[] cbx)
         {
             string s = "";
             string[] parts = { "頭", "首", "体", "背", "手", "手", "指", "指", "腕", "腰", "足" };
             for (int i = 0; i < cbx.Length; i++)
-                if (cbx[i]!=null && cbx[i]==true)
+                if (cbx[i] != null && cbx[i] == true)
                     s += parts[i] + "|";
             return s;
         }
