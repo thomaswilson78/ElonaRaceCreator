@@ -51,7 +51,7 @@ namespace ElonaRaceCreator
             }
             catch (Exception e)
             {
-                System.Windows.Forms.MessageBox.Show("Place program into your \"data\" directory in you Elona folder. \n \n Full Error: " + e.Message,
+                System.Windows.Forms.MessageBox.Show("Place program into the \"data\" directory in your Elona folder. \n \n Full Error: " + e.Message,
                     "Error", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
                 Close();
             }
@@ -104,18 +104,26 @@ namespace ElonaRaceCreator
 
         private void UpdateRace_Click(object sender, RoutedEventArgs e)
         {
-            bool?[] cbx = { HeadCB.IsChecked, NeckCB.IsChecked, BackCB.IsChecked, BodyCB.IsChecked,
-                HandRCB.IsChecked, HandLCB.IsChecked, RingRCB.IsChecked,
-                RingLCB.IsChecked, ArmCB.IsChecked, WaistCB.IsChecked, LegCB.IsChecked };
-            Object[] RaceInfo = { "", RaceName.Text, RaceID.Text, PlayableCB, SexSldr.Value, "1", "2",
-                HPTB.Text, MPTB.Text, StrTB.Text, EndTB.Text, DexTB.Text, PerTB.Text, LerTB.Text, WilTB.Text, MagTB.Text, ChrTB.Text, SpdTB.Text,
-                Race.PrintBody(cbx) };
-            TextBox[] TextBoxes = { };
-            string[] arr = new string[34];
-            for (int i = 0; i < arr.Length; i++)
+            try
             {
+                Race r = RaceList[RaceLB.SelectedIndex];
+                List<string> ls;
+
+                bool?[] cbx = { HeadCB.IsChecked , NeckCB.IsChecked, BackCB.IsChecked, BodyCB.IsChecked,
+                HandRCB.IsChecked, HandLCB.IsChecked, RingRCB.IsChecked,
+                RingLCB.IsChecked, ArmCB.IsChecked, WaistCB.IsChecked, LegCB.IsChecked, PlayableCB.IsChecked };
+                string[] RaceInfo = { "", RaceName.Text, RaceID.Text, SexSldr.Value.ToString(), "1", "2",
+                HPTB.Text, MPTB.Text, StrTB.Text, EndTB.Text, DexTB.Text, PerTB.Text, LerTB.Text, WilTB.Text, MagTB.Text, ChrTB.Text, SpdTB.Text };
+                string[] arr = new string[34];
+
+                //To-Do: Finish up add all entries then call function to take data and update the race, then save the race's update to the csv file.
 
             }
+            catch(Exception Ex)
+            {
+                MessageBox.Show(Ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
         }
 
         private void SexSldr_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)

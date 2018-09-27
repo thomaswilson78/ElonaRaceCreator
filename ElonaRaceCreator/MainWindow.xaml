@@ -26,7 +26,7 @@
             <TextBlock Grid.Row="0" Grid.Column="0" Text="Races" 
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
-                       FontWeight="Bold" FontSize="20"/>
+                       FontWeight="Bold" FontSize="20" FontFamily="Batang"/>
             <ListBox Name="RaceLB" Grid.Column="0" Grid.Row="1"
             Grid.RowSpan="4" 
             SelectionChanged="RaceLB_SelectionChanged"
@@ -151,7 +151,7 @@
                             ValueChanged="SexSldr_ValueChanged"/>
 
                 </DockPanel>
-                <DockPanel>
+                <DockPanel Margin="0 5">
                     <TextBlock Text="Pic2" Margin="3" />
                     <ComboBox HorizontalAlignment="Left" Width="50" Margin="3 0" Name="Pic2CB"/>
                 </DockPanel>
@@ -179,12 +179,12 @@
             <TextBlock Grid.Row="0" Grid.Column="2" Text="Skills" 
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
-                       FontWeight="Bold" FontSize="20"/>
+                       FontWeight="Bold" FontSize="20" FontFamily="Batang"/>
 
             <TextBlock Grid.Row="3" Grid.Column="3" Text="Traits" 
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
-                       FontWeight="Bold" FontSize="20" Margin="33,10,38,70"/>
+                       FontWeight="Bold" FontSize="20" Margin="33,10,38,70" FontFamily="Batang"/>
             <ListView Grid.Column="2" HorizontalAlignment="Left" Height="208" Grid.Row="1" VerticalAlignment="Top" Width="250" Grid.ColumnSpan="2" Grid.RowSpan="2">
                 <ListView.View>
                     <GridView>

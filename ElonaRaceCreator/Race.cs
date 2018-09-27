@@ -26,36 +26,40 @@ namespace ElonaRaceCreator
             AddInfo(arr);
         }
 
+        /// <summary>
+        /// Sets all values in Object
+        /// </summary>
+        /// <param name="arr"></param>
         public void AddInfo(string[] arr)
         {
             jpname = arr[0];
             name = arr[1];
-            id = IntParse(arr[2]);
+            id = Helper.IntParse(arr[2]);
             playable = arr[3].Equals("1");
-            sex = ByteParse(arr[4]);
-            pic1 = IntParse(arr[5]);
-            pic2 = IntParse(arr[6]);
-            dv = IntParse(arr[7]);
-            pv = IntParse(arr[8]);
-            hp = IntParse(arr[9]);
-            mp = IntParse(arr[10]);
-            str = ByteParse(arr[11]);
-            end = ByteParse(arr[12]);
-            dex = ByteParse(arr[13]);
-            per = ByteParse(arr[14]);
-            ler = ByteParse(arr[15]);
-            wil = ByteParse(arr[16]);
-            mag = ByteParse(arr[17]);
-            chr = ByteParse(arr[18]);
-            spd = IntParse(arr[19]);
-            mstyle = ByteParse(arr[20]);
-            cstyle = ByteParse(arr[21]);
-            resist = ByteParse(arr[22]);
-            ageRange = IntParse(arr[23]);
-            minAge = IntParse(arr[24]);
+            sex = Helper.ByteParse(arr[4]);
+            pic1 = Helper.IntParse(arr[5]);
+            pic2 = Helper.IntParse(arr[6]);
+            dv = Helper.IntParse(arr[7]);
+            pv = Helper.IntParse(arr[8]);
+            hp = Helper.IntParse(arr[9]);
+            mp = Helper.IntParse(arr[10]);
+            str = Helper.ByteParse(arr[11]);
+            end = Helper.ByteParse(arr[12]);
+            dex = Helper.ByteParse(arr[13]);
+            per = Helper.ByteParse(arr[14]);
+            ler = Helper.ByteParse(arr[15]);
+            wil = Helper.ByteParse(arr[16]);
+            mag = Helper.ByteParse(arr[17]);
+            chr = Helper.ByteParse(arr[18]);
+            spd = Helper.IntParse(arr[19]);
+            mstyle = Helper.ByteParse(arr[20]);
+            cstyle = Helper.ByteParse(arr[21]);
+            resist = Helper.ByteParse(arr[22]);
+            ageRange = Helper.IntParse(arr[23]);
+            minAge = Helper.IntParse(arr[24]);
             blood = arr[25].Equals("1");
-            breeder = IntParse(arr[26]);
-            height = IntParse(arr[27]);
+            breeder = Helper.IntParse(arr[26]);
+            height = Helper.IntParse(arr[27]);
             skill = arr[28];
             trait = arr[29];
             List<string> ls = GetBody(arr[30]);
@@ -64,31 +68,12 @@ namespace ElonaRaceCreator
             desc_e = arr[32];
         }
 
-        static public int IntParse(string x)
-        {
-            if (int.TryParse(x, out int result))
-                return result;
-            else
-                return 0;
-        }
-
-        static public byte ByteParse(string x)
-        {
-            if (byte.TryParse(x, out byte result))
-                return result;
-            else
-                return 0;
-        }
-
-        private string ReturnNonZero(int v)
-        {
-            if (v > 0)
-                return v.ToString();
-            else
-                return "";
-        }
-
-        public void SetBody(List<string> ls)
+        
+        /// <summary>
+        /// Sets body based on characters from csv file.
+        /// </summary>
+        /// <param name="ls"></param>
+        private void SetBody(List<string> ls)
         {
             foreach (string s in ls)
             {
@@ -134,6 +119,10 @@ namespace ElonaRaceCreator
             }
         }
 
+        /// <summary>
+        /// For updating object's body information.
+        /// </summary>
+        /// <param name="list"></param>
         public void SetBody(bool?[] list)
         {
             List<bool> BoolList = new List<bool>()
@@ -143,6 +132,11 @@ namespace ElonaRaceCreator
                 BoolList[i] = list[i].HasValue ? false : (bool)list[i];
         }
 
+        /// <summary>
+        /// Reads through string of Japanese Kanji for body parts and converts them into a list for parsing through.
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
         private List<string> GetBody(string s)
         {
             List<string> ls = new List<string>();
@@ -152,17 +146,29 @@ namespace ElonaRaceCreator
             return ls;
         }
 
+        /// <summary>
+        /// Returns body info as bool list.
+        /// </summary>
+        /// <returns></returns>
         public List<bool> GetBody()
         {
             return new List<bool>() { head, neck, back, body, handr, handl, ringr, ringl, arm, waist, leg };
         }
 
+        /// <summary>
+        /// Returns stats as integer list.
+        /// </summary>
+        /// <returns></returns>
         public List<int> GetStats()
         {
             return new List<int>() { hp, mp, str, end, dex, per, ler, wil, mag, chr, spd };
         }
 
-        public string PrintBody()
+        /// <summary>
+        /// For ToString(), turns bool values into Kanji for writing back into CSV file
+        /// </summary>
+        /// <returns></returns>
+        private string PrintBody()
         {
             string s = "";
             bool[] b = { head, neck, back, body, handr, handl, ringr, ringl, arm, waist, leg };
@@ -173,15 +179,15 @@ namespace ElonaRaceCreator
             return s;
         }
 
-        static public string PrintBody(bool?[] cbx)
-        {
-            string s = "";
-            string[] parts = { "頭", "首", "体", "背", "手", "手", "指", "指", "腕", "腰", "足" };
-            for (int i = 0; i < cbx.Length; i++)
-                if (cbx[i] != null && cbx[i] == true)
-                    s += parts[i] + "|";
-            return s;
-        }
+        //static public string PrintBody(bool?[] cbx)
+        //{
+        //    string s = "";
+        //    string[] parts = { "頭", "首", "体", "背", "手", "手", "指", "指", "腕", "腰", "足" };
+        //    for (int i = 0; i < cbx.Length; i++)
+        //        if (cbx[i] != null && cbx[i] == true)
+        //            s += parts[i] + "|";
+        //    return s;
+        //}
 
         private void SetTraits()
         {
@@ -205,9 +211,9 @@ namespace ElonaRaceCreator
         {
             object[] arr =
                 {name, id, playable, sex, pic1, pic2,
-                ReturnNonZero(dv), ReturnNonZero(pv), hp, mp,
+                Helper.ReturnNonZero(dv), Helper.ReturnNonZero(pv), hp, mp,
                 str, end, dex, per, ler, wil, mag, chr, spd,
-                ReturnNonZero(mstyle), ReturnNonZero(cstyle), ReturnNonZero(resist),
+                Helper.ReturnNonZero(mstyle), Helper.ReturnNonZero(cstyle), Helper.ReturnNonZero(resist),
                 ageRange, minAge, blood, breeder, height, skill, trait,
                 PrintBody(), desc_j, desc_e, ""};
 
@@ -215,16 +221,7 @@ namespace ElonaRaceCreator
             for (int i = 0; i < 33; i++)
             {
                 if (arr[i] is bool)
-                {
-                    if ((bool)arr[i])
-                    {
-                        print += ",1";
-                    }
-                    else
-                    {
-                        print += ",";
-                    }
-                }
+                    print += (bool)arr[i] == true ? ",1" : ",";
                 else if (arr[i] is int || arr[i] is byte)
                     print += "," + arr[i].ToString();
                 else

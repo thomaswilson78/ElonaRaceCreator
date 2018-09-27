@@ -74,6 +74,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Helper.cs" />
     <Compile Include="Race.cs" />
     <Compile Include="Skill.cs" />
     <Compile Include="SQLiteDB.cs" />
