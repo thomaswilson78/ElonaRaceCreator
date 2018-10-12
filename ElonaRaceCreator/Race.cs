@@ -125,11 +125,17 @@ namespace ElonaRaceCreator
         /// <param name="list"></param>
         public void SetBody(bool?[] list)
         {
-            List<bool> BoolList = new List<bool>()
-            { head, neck, back, body, handr, handl, ringr, ringl, arm, waist, leg };
-
-            for (int i = 0; i < list.Count(); i++)
-                BoolList[i] = list[i].HasValue ? false : (bool)list[i];
+            head = list[0] ?? false;
+            neck = list[1] ?? false;
+            back = list[2] ?? false;
+            body = list[3] ?? false;
+            handr = list[4] ?? false;
+            handl = list[5] ?? false;
+            ringr = list[6] ?? false;
+            ringl = list[7] ?? false;
+            arm = list[8] ?? false;
+            waist = list[9] ?? false;
+            leg = list[10] ?? false;
         }
 
         /// <summary>

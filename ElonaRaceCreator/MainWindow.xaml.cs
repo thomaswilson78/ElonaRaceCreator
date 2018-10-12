@@ -51,7 +51,7 @@ namespace ElonaRaceCreator
             }
             catch (Exception e)
             {
-                System.Windows.Forms.MessageBox.Show("Place program into the \"data\" directory in your Elona folder. \n \n Full Error: " + e.Message,
+                System.Windows.Forms.MessageBox.Show("Place program into your \"data\" directory in you Elona folder. \n \n Full Error: " + e.Message,
                     "Error", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
                 Close();
             }
@@ -95,35 +95,41 @@ namespace ElonaRaceCreator
             String name = Microsoft.VisualBasic.Interaction.InputBox("Enter the name of your race.", "Add Race", "");
             if (!String.IsNullOrEmpty(name) && !name.Contains(","))
             {
-                int id = (from kvp in RaceList select kvp.id).Max() + 1;
+                int id = RaceList.Max(r => r.id) + 1;
                 RaceList.Add(new Race(name, id));
                 RaceLB.Items.Add(name);
+                RaceLB.SelectedIndex = id - 2;
+                RaceLB_SelectionChanged(RaceLB, null);
                 //Todo: Enter race into o_race.csv
             }
         }
 
         private void UpdateRace_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                Race r = RaceList[RaceLB.SelectedIndex];
-                List<string> ls;
+            Race r = RaceList[RaceLB.SelectedIndex];
+            //For setting everything, body is set seperate.
+            Object[] RaceInfo = { r.jpname, RaceName.Text, RaceID.Text, PlayableCB.IsChecked,
+            SexSldr.Value, Pic1CB.SelectedValue ?? 0, Pic2CB.SelectedValue ?? 0, 0, 0,
+            HPTB.Text, MPTB.Text, StrTB.Text, EndTB.Text, DexTB.Text, PerTB.Text,
+            LerTB.Text, WilTB.Text, MagTB.Text, ChrTB.Text, SpdTB.Text,
+            r.mstyle, r.cstyle, r.resist, r.ageRange, r.minAge, r.blood, r.breeder,
+            r.height, r.skill, r.trait, "", r.desc_j, RaceDesc.Text };
+            bool?[] cbx = { HeadCB.IsChecked , NeckCB.IsChecked , BackCB.IsChecked , BodyCB.IsChecked ,
+                HandRCB.IsChecked , HandLCB.IsChecked , RingRCB.IsChecked ,
+                RingLCB.IsChecked , ArmCB.IsChecked , WaistCB.IsChecked , LegCB.IsChecked  };
 
-                bool?[] cbx = { HeadCB.IsChecked , NeckCB.IsChecked, BackCB.IsChecked, BodyCB.IsChecked,
-                HandRCB.IsChecked, HandLCB.IsChecked, RingRCB.IsChecked,
-                RingLCB.IsChecked, ArmCB.IsChecked, WaistCB.IsChecked, LegCB.IsChecked, PlayableCB.IsChecked };
-                string[] RaceInfo = { "", RaceName.Text, RaceID.Text, SexSldr.Value.ToString(), "1", "2",
-                HPTB.Text, MPTB.Text, StrTB.Text, EndTB.Text, DexTB.Text, PerTB.Text, LerTB.Text, WilTB.Text, MagTB.Text, ChrTB.Text, SpdTB.Text };
-                string[] arr = new string[34];
+            string[] arr = new string[33];
+            for (int i = 0; i < arr.Length; i++)
+                if (RaceInfo[i] is bool)
+                    arr[i] = (bool)RaceInfo[i] ? "1" : "";
+                else
+                    arr[i] = RaceInfo[i].ToString();
 
-                //To-Do: Finish up add all entries then call function to take data and update the race, then save the race's update to the csv file.
+            r.AddInfo(arr);
+            r.SetBody(cbx);
 
-            }
-            catch(Exception Ex)
-            {
-                MessageBox.Show(Ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-
+            MessageBox.Show("Update Completed.");
+            //Todo: Update .CSV file, create fields for latter stuff (mstyle to traits)
         }
 
         private void SexSldr_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)

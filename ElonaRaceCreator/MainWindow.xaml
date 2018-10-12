@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ElonaRaceCreator"
         mc:Ignorable="d"
         Title="Elona Race Editor" Height="600" Width="800"
         Background="Tan" FontFamily="Arial">
@@ -26,7 +25,7 @@
             <TextBlock Grid.Row="0" Grid.Column="0" Text="Races" 
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
-                       FontWeight="Bold" FontSize="20" FontFamily="Batang"/>
+                       FontWeight="Bold" FontSize="20"/>
             <ListBox Name="RaceLB" Grid.Column="0" Grid.Row="1"
             Grid.RowSpan="4" 
             SelectionChanged="RaceLB_SelectionChanged"
@@ -151,13 +150,13 @@
                             ValueChanged="SexSldr_ValueChanged"/>
 
                 </DockPanel>
-                <DockPanel Margin="0 5">
+                <DockPanel>
                     <TextBlock Text="Pic2" Margin="3" />
                     <ComboBox HorizontalAlignment="Left" Width="50" Margin="3 0" Name="Pic2CB"/>
                 </DockPanel>
             </StackPanel>
 
-            <Grid Grid.Column="1" Grid.Row="3" Margin="10 5">
+            <Grid Grid.Column="1" Grid.Row="4" Grid.RowSpan="2" Margin="10 5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="20" />
                     <RowDefinition Height="*" />
@@ -176,15 +175,11 @@
             </StackPanel>
 
 
-            <TextBlock Grid.Row="0" Grid.Column="2" Text="Skills" 
+            <TextBlock Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Text="Skills" 
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
-                       FontWeight="Bold" FontSize="20" FontFamily="Batang"/>
+                       FontWeight="Bold" FontSize="20"/>
 
-            <TextBlock Grid.Row="3" Grid.Column="3" Text="Traits" 
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       FontWeight="Bold" FontSize="20" Margin="33,10,38,70" FontFamily="Batang"/>
             <ListView Grid.Column="2" HorizontalAlignment="Left" Height="208" Grid.Row="1" VerticalAlignment="Top" Width="250" Grid.ColumnSpan="2" Grid.RowSpan="2">
                 <ListView.View>
                     <GridView>
@@ -193,6 +188,9 @@
                 </ListView.View>
             </ListView>
 
+            <TextBlock Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Text="Traits" 
+                       HorizontalAlignment="Center"
+                       FontWeight="Bold" FontSize="20" Margin="0 10"/>
         </Grid>
     </Border>
 </Window>
